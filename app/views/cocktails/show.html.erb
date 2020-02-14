@@ -1,17 +1,22 @@
-<%= @cocktail.name %>
 
-<% @cocktail.doses.each do |dose|%>
-   <li class="list-group-item">
-      <%= dose.description %>
-      <%= dose.ingredient.name %>
-      <%= link_to "Remove",
+<div class="card-trip">
+  <img src="https://www.widex.fr/-/media/images/blog/new_blog/cocktailpartyeffect-1600x1067.jpg?h=1067&la=fr-FR&w=1600&hash=ABA8615AD1CAD137739F63F85053AE6F4835F588" />
+  <div class="card-trip-infos">
+    <div>
+      <h2><%= @cocktail.name %></h2>
+      <p><% @cocktail.doses.each do |dose|%>
+          <%= dose.description %>
+          <%= dose.ingredient.name %>
+          <%= link_to "Remove",
                   dose_path(dose),
                   method: :delete,
                   data: { confirm: "Are you sure?" } %>
-    </li>
-<% end %>
+          <% end %>
+        </p>
+      <h2><%= link_to 'Dose Your Cocktail', new_cocktail_dose_path(@cocktail) %></h2>
+    </div>
+    <h2 class="card-trip-pricing"><%= link_to 'Back To Menu', cocktails_path %></h2>
+    <img src="https://assets3.thrillist.com/v1/image/1868462/size/tmg-article_default_mobile.jpg" class="card-trip-user avatar-bordered" />
+  </div>
+</div>
 
-
-<%= link_to 'Back', cocktails_path %>
-
-<%= link_to 'Dose', new_cocktail_dose_path(@cocktail) %>
